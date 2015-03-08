@@ -33,6 +33,7 @@ public class PassengerDisplay extends JPanel implements Observer {
 
     }
 
+
     //update method gets and stores time in 24 hour hh:mm format
     public void update()
     {

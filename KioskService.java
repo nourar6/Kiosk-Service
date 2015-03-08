@@ -1,3 +1,5 @@
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class KioskService
@@ -70,7 +72,8 @@ public class KioskService
         taxi_queue.add(taxi);
 
         int pass_size = passenger_queue.size();
-        PassTaxiGUI  passDisplay = new PassTaxiGUI(pass_size);
+        PassTaxiGUI  passDisplay = new PassTaxiGUI("PASSENGER GROUPS ",pass_size);
+
 
         for(int i=0; i < pass_size; i++){
             Passenger pass = passenger_queue.get(i);
@@ -79,13 +82,74 @@ public class KioskService
         }
 
         int taxi_size = taxi_queue.size();
-        PassTaxiGUI  taxiDisplay = new PassTaxiGUI(pass_size);
+        PassTaxiGUI  taxiDisplay = new PassTaxiGUI("TAXIS ",pass_size);
         for(int i=0; i < taxi_size; i++){
             Taxi taxis = taxi_queue.get(i);
             TaxiDisplay td = new TaxiDisplay(taxis);
             taxiDisplay.addComponent(td, i);
         }
 
+
+//        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(passenger_queue) {
+//            @Override
+//            protected Void doInBackground() throws Exception {
+//                // Simulate doing something useful.
+//                for(int i = 0; 0 < pass_size; i++) {
+//
+//                    try {
+//                        Thread.sleep(5000);
+//                    } catch (InterruptedException ex) {
+//                        Thread.currentThread().interrupt();
+//                    }
+//                    Passenger passenger1 = passenger_queue.remove(0);
+//                    Taxi taxi1 = taxi_queue.remove(0);
+//                    taxi_size = taxi_queue.size();
+//                    pass_size = passenger_queue.size();
+//                    taxiDisplay.getContentPane().remove(0);
+//                    passDisplay.getContentPane().remove(0);
+//
+//                    passDisplay.revalidate();
+//                    taxiDisplay.revalidate();
+//
+//                    dd.setKioskdata(passenger1, taxi1);
+//
+//                }
+//
+//                return null;
+//            }
+//        };
+//
+//        SwingWorker<Void, Void> worker2 = new SwingWorker<Void, Void>() {
+//            @Override
+//            protected Void doInBackground() throws Exception {
+//                // Simulate doing something useful.
+//                for(int i = 0; 0 < pass_size; i++) {
+//
+//                    try {
+//                        Thread.sleep(5000);
+//                    } catch (InterruptedException ex) {
+//                        Thread.currentThread().interrupt();
+//                    }
+//                    Passenger passenger1 = passenger_queue.remove(0);
+//                    Taxi taxi1 = taxi_queue.remove(0);
+//                    taxi_size = taxi_queue.size();
+//                    pass_size = passenger_queue.size();
+//                    taxiDisplay.getContentPane().remove(0);
+//                    passDisplay.getContentPane().remove(0);
+//
+//                    passDisplay.revalidate();
+//                    taxiDisplay.revalidate();
+//
+//                    dd2.setKioskdata(passenger1, taxi1);
+//
+//                }
+//
+//                return null;
+//            }
+//        };
+//
+//        worker.execute();
+//        worker2.execute();
 
         for(int i = 0; 0 < pass_size; i++) {
 
@@ -98,12 +162,22 @@ public class KioskService
             Taxi taxi1 = taxi_queue.remove(0);
             taxi_size = taxi_queue.size();
             pass_size = passenger_queue.size();
-            taxiDisplay.getContentPane().remove(0);
-            passDisplay.getContentPane().remove(0);
+            taxiDisplay.getContentPane().remove(1);
+            passDisplay.getContentPane().remove(1);
 
             passDisplay.revalidate();
             taxiDisplay.revalidate();
 
+            Component[] header = taxiDisplay.getContentPane().getComponents();
+
+            JTextField pas_groups = new JTextField(15);
+            pas_groups.setEditable(false);
+            pas_groups.setText(header + "("+size+")");
+            pas_groups.setHorizontalAlignment(JTextField.LEFT);
+            pas_groups.setFont(kioskFont);
+            header[0].add(pas_groups);
+            System.out.println(header[0].toString());
+            //header.setText("" + "(" + size + ")");
             dd.setKioskdata(passenger1, taxi1);
 
         }
