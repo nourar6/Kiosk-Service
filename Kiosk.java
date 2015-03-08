@@ -1,5 +1,3 @@
-//holds the time, with various get and set methods
-//subject of observer pattern
 
 import java.util.*;
 public class Kiosk implements Subject

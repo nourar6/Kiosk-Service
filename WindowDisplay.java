@@ -1,13 +1,12 @@
-import java.awt.*;
 import javax.swing.*;
-import javax.swing.JTextField;
+import java.awt.*;
 
 //using observer pattern
 public class WindowDisplay extends JPanel implements Observer
 {
 	private Kiosk kioskdata;
     private JTextField kioskText = new JTextField(10);
-	private JTextField destText = new JTextField(10);
+	private JTextField destText = new JTextField(20);
     private JTextField passText = new JTextField(10);
     private JTextField taxiText = new JTextField(10);
 
@@ -42,7 +41,13 @@ public class WindowDisplay extends JPanel implements Observer
         taxiText.setFont(kioskFont);
 		update();
 
-	}	
+	}
+    public void setKioskdata(Passenger passenger, Taxi taxi){
+        kioskdata.setDestination(passenger.getDestination());
+        kioskdata.setNo_of_pas(passenger.getNo_of_pas());
+        kioskdata.setTaxi(taxi.getTaxi());
+
+    }
 	//update method gets and stores time in 24 hour hh:mm format
 	public void update()
 	{

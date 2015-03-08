@@ -1,4 +1,3 @@
-import javax.swing.JOptionPane;
 public class Counter implements Observer{
 	private int counter ;
 	
@@ -10,8 +9,8 @@ public class Counter implements Observer{
 	
 	public void update () {
 		counter++;
-		JOptionPane.showMessageDialog(null, "The clock has been changed " 
-				+ counter + " times");
+//		JOptionPane.showMessageDialog(null, "The clock has been changed "
+//				+ counter + " times");
 	}
 
 }

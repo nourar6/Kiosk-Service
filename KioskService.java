@@ -19,36 +19,98 @@ public class KioskService
 
         //add all the display kiosk panels
     	display.addCenter(dd);
-
         //add all the display kiosk panels
         display2.addCenter(dd2);
+
+
 
     	//create counter
     	Counter counter = new Counter (kiosk);
 
-
-
         //TODO Generate Passenger Queues
-        ArrayList<ArrayList<String>> passenger_queue = new ArrayList<ArrayList<String>>();
-        ArrayList<String> passenger_group = new ArrayList<String>();
-        passenger_group.add("Edinburgh");
-        passenger_group.add("3");
-        passenger_queue.add(passenger_group);
-        passenger_group = new ArrayList<String>();
-        passenger_group.add("Manchester");
-        passenger_group.add("4");
-        passenger_group = new ArrayList<String>();
-        passenger_group.add("Newcastle");
-        passenger_group.add("3");
-        passenger_group = new ArrayList<String>();
-        passenger_group.add("London");
-        passenger_group.add("2");
+        ArrayList<Passenger> passenger_queue = new ArrayList<Passenger>();
 
-        //TODO Generate Taxi Queues
+        Passenger passenger = new Passenger();
+        passenger.setDestination("Edinburgh");
+        passenger.setNo_of_pas(3);
+        passenger_queue.add(passenger);
 
-        //create gui to allow users to set the size of groups.
-        PassTaxiGUI  setPassTaxiGUI = new PassTaxiGUI(kiosk, passenger_queue);
-        setPassTaxiGUI.setVisible(true);
+        passenger = new Passenger();
+        passenger.setDestination("Manchester");
+        passenger.setNo_of_pas(4);
+        passenger_queue.add(passenger);
+
+        passenger = new Passenger();
+        passenger.setDestination("Newcastle");
+        passenger.setNo_of_pas(3);
+        passenger_queue.add(passenger);
+
+        passenger = new Passenger();
+        passenger.setDestination("London");
+        passenger.setNo_of_pas(2);
+        passenger_queue.add(passenger);
+
+
+        ArrayList<Taxi> taxi_queue = new ArrayList<Taxi>();
+
+        Taxi taxi = new Taxi();
+        taxi.setTaxi("L5H 140");
+        taxi_queue.add(taxi);
+
+        taxi = new Taxi();
+        taxi.setTaxi("Z6N 557");
+        taxi_queue.add(taxi);
+
+        taxi = new Taxi();
+        taxi.setTaxi("R6D 703");
+        taxi_queue.add(taxi);
+
+        taxi = new Taxi();
+        taxi.setTaxi("U6F 901");
+        taxi_queue.add(taxi);
+
+        int pass_size = passenger_queue.size();
+        PassTaxiGUI  passDisplay = new PassTaxiGUI(pass_size);
+
+        for(int i=0; i < pass_size; i++){
+            Passenger pass = passenger_queue.get(i);
+            PassengerDisplay pd = new PassengerDisplay(pass);
+            passDisplay.addComponent(pd, i);
+        }
+
+        int taxi_size = taxi_queue.size();
+        PassTaxiGUI  taxiDisplay = new PassTaxiGUI(pass_size);
+        for(int i=0; i < taxi_size; i++){
+            Taxi taxis = taxi_queue.get(i);
+            TaxiDisplay td = new TaxiDisplay(taxis);
+            taxiDisplay.addComponent(td, i);
+        }
+
+
+        for(int i = 0; 0 < pass_size; i++) {
+
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+            Passenger passenger1 = passenger_queue.remove(0);
+            Taxi taxi1 = taxi_queue.remove(0);
+            taxi_size = taxi_queue.size();
+            pass_size = passenger_queue.size();
+            taxiDisplay.getContentPane().remove(0);
+            passDisplay.getContentPane().remove(0);
+
+            passDisplay.revalidate();
+            taxiDisplay.revalidate();
+
+            dd.setKioskdata(passenger1, taxi1);
+
+        }
+
+
+
+
 
         //Run the program..
 
