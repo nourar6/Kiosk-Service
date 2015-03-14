@@ -1,3 +1,4 @@
+//Model for MVC
 
 import java.util.*;
 public class Kiosk implements Subject

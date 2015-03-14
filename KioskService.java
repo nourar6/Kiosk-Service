@@ -83,91 +83,12 @@ public class KioskService
 
         Thread thread2 = new Thread(new KioskWorker(1, pi, ti)); //kioskWorker
         thread2.start();
+        try {
+            Thread.sleep(200);
+        }
+        catch (Exception e) {}
         Thread thread3 = new Thread(new KioskWorker(2, pi, ti)); //kioskWorker
         thread3.start();
-//        Thread thread4 = new Thread(new KioskWorker(2, pi, ti)); //kioskWorker
-//        thread4.start();
-
-
-//        KioskWorker task = new KioskWorker(1,i);
-//        try {
-//            Thread.sleep(1000);
-//        }
-//        catch (Exception e){}
-//
-//        KioskWorker task2 = new KioskWorker(2, i);
-//
-//        task.execute();
-//        task2.execute();
-//
-//        try {
-//            System.out.println(task.get()); //prints all prime numbers we have got
-//            System.out.println("");
-//        }
-//        catch (Exception e) {
-//            System.out.print(e.getMessage());
-//        }
-//        try {
-//            System.out.println(task2.get()); //prints all prime numbers we have got
-//            System.out.println("");
-//        }
-//        catch (Exception e) {
-//            System.out.print(e.getMessage());
-//        }
-//        task.addPropertyChangeListener(
-//            new PropertyChangeListener() {
-//                public  void propertyChange(PropertyChangeEvent evt) {
-//                    System.out.println(evt.getPropertyName());
-//                    if ("progress".equals(evt.getPropertyName())) {
-//
-//                    }
-//                }
-//            });
-//
-//        task2.addPropertyChangeListener(
-//            new PropertyChangeListener() {
-//                public  void propertyChange(PropertyChangeEvent evt) {
-//                    System.out.println(evt.getPropertyName());
-//                    if ("progress".equals(evt.getPropertyName())) {
-//
-//                    }
-//                }
-//            });
-
-//        for(int i = 0; 0 < pass_size; i++) {
-//
-//            try {
-//                Thread.sleep(5000);
-//            } catch (InterruptedException ex) {
-//                Thread.currentThread().interrupt();
-//            }
-//            Passenger passenger1 = passenger_queue.remove(0);
-//            Taxi taxi1 = taxi_queue.remove(0);
-//            taxi_size = taxi_queue.size();
-//            pass_size = passenger_queue.size();
-//            taxiDisplay.getContentPane().remove(1);
-//            passDisplay.getContentPane().remove(1);
-//
-//            passDisplay.revalidate();
-//            taxiDisplay.revalidate();
-//
-//            Component[] header = taxiDisplay.getContentPane().getComponents();
-//
-//            JTextField pas_groups = new JTextField(15);
-////            pas_groups.setEditable(false);
-////            pas_groups.setText(header + "("+size+")");
-////            pas_groups.setHorizontalAlignment(JTextField.LEFT);
-////            pas_groups.setFont(kioskFont);
-//
-//            System.out.println(header[0].toString());
-//            //header.setText("" + "(" + size + ")");
-//            dd.setKioskdata(passenger1, taxi1);
-//
-//        }
-
-
-
-
 
         //Run the program..
 

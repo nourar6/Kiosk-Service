@@ -1,3 +1,4 @@
+//Controller for MVC
 import java.util.Iterator;
 
 public class KioskWorker implements Runnable  {
@@ -32,11 +33,11 @@ public class KioskWorker implements Runnable  {
     }
 
     public void run() {
+        Logger logger = Logger.getInstance();
 
         while(passenger_iterator.hasNext()) {
             Passenger passenger = passenger_iterator.next();
-            System.out.println(number + " " + passenger.getDestination());
-
+            logger.log(number + ": " + passenger.getDestination());
             passenger_iterator.remove();
 
             kiosk.setDestination(passenger.getDestination());
@@ -44,7 +45,9 @@ public class KioskWorker implements Runnable  {
 
             if (taxi_iterator.hasNext()) {
                 Taxi taxi = taxi_iterator.next();
-                System.out.println(number + " " + taxi.getTaxi());
+
+                logger.log(number + ": " + taxi.getTaxi());
+
                 kiosk.setTaxi(taxi.getTaxi());
                 taxi_iterator.remove();
                 taxi_display.getContentPane().remove(1);
@@ -70,7 +73,7 @@ public class KioskWorker implements Runnable  {
         taxi_display.revalidate();
         pass_display.revalidate();
 
-
+        logger.close();
     }
 
 //    @Override

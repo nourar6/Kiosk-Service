@@ -1,0 +1,9 @@
+Window1: Edinburgh 
+Window1: L5H 140 
+Window2: Manchester 
+Window2: Z6N 557 
+Window2: Newcastle 
+Window2: R6D 703 
+Window1: London 
+Window1: U6F 901 
+Window2: Birmingham 

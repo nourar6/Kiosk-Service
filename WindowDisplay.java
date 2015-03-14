@@ -1,3 +1,5 @@
+//Another View for MVC
+
 import javax.swing.*;
 import java.awt.*;
 

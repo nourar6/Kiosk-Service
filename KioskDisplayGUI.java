@@ -1,3 +1,5 @@
+// View for MVC
+
 import javax.swing.*;
 import java.awt.*;
 class KioskDisplayGUI extends JFrame
