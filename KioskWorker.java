@@ -86,14 +86,13 @@ public class KioskWorker implements Runnable  {
             kiosk.setDestination(passenger.getDestination());
             kiosk.setNo_of_pas(passenger.getNo_of_pas());
 
+            //repaint the displays to make sure they are most up-to-date
+            taxi_display.repaint();
+            pass_display.repaint();
 
             // sleep for 3 * no_of_pass to simulate paying at kiosk
             // allows workers to pick up passengers in a random order
             // instead of the usual 1-2-1-2-1-2
-
-            taxi_display.repaint();
-            pass_display.repaint();
-
             try {
                 Thread.sleep(3000 * passenger.getNo_of_pas());
             }
@@ -116,14 +115,13 @@ public class KioskWorker implements Runnable  {
         taxi_display.revalidate();
         pass_display.revalidate();
 
-        // once the worker has finshed close the logger.. this may interfere with the last window.
-        // TODO: move this so last worker closes this
         logger.close();
     }
 
+    // function to update the header on the display to show the remaining number in the queue
     public void update_header(String header, int size, JFrame display)
     {
-
+        // same set up as in PassTaxiGUI constructor
         Font kioskFont = new Font("SansSerif", Font.BOLD, 14);
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(1,1));
@@ -134,7 +132,9 @@ public class KioskWorker implements Runnable  {
         pas_groups.setHorizontalAlignment(JTextField.LEFT);
         pas_groups.setFont(kioskFont);
         panel.add(pas_groups);
+
         display.add(panel, 0);
+        display.setVisible(true);
 
     }
 

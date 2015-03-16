@@ -8,7 +8,6 @@ class PassTaxiGUI extends JFrame
 	public PassTaxiGUI(String header, int size)
 	{
         Font kioskFont = new Font("SansSerif", Font.BOLD, 14);
-        pack();
         this.setLayout(new GridLayout(size, 1));
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);

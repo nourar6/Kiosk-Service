@@ -3,13 +3,13 @@
 import javax.swing.*;
 import java.awt.*;
 
-//KisokDisplayGUI
+//KioskDisplayGUI
 class KioskDisplayGUI extends JFrame
 {
     //Constructor
 	public KioskDisplayGUI()
 	{
-        pack();
+        //set up the frame for the kiosk
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setSize(260,180);
@@ -17,13 +17,10 @@ class KioskDisplayGUI extends JFrame
 		this.setVisible(true);
 
 	}
-	
+	// set the border layout center with the panel provided.
 	public void addCenter(JPanel panel) {
 		this.add(panel, BorderLayout.CENTER);
 	}
 
-	public void addSouth(JPanel panel) {
-		this.add(panel, BorderLayout.SOUTH);
-	}
 }
 
