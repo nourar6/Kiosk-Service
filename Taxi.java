@@ -2,18 +2,17 @@
 import java.util.*;
 public class Taxi implements Subject
 {
-    //Passenger Class
+    //Taxi Class
     private String taxi_reg;
 
-    //initially, set time to midnight
+    //constructor
     public Taxi(){}
 
-    //////////////////////////////////////////////////////////////
-    //VARIOUS GET METHODS
-    //returns hours component of the time
 
+    //GET METHOD
     public String getTaxi() { return taxi_reg; }
 
+    //SET METHOD
     public void setTaxi(String reg) { taxi_reg = reg; }
 
 

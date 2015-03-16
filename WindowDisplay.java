@@ -6,6 +6,7 @@ import java.awt.*;
 //using observer pattern
 public class WindowDisplay extends JPanel implements Observer
 {
+    //local vars
 	private Kiosk kioskdata;
     private JTextField kioskText = new JTextField(10);
 	private JTextField destText = new JTextField(20);
@@ -13,19 +14,17 @@ public class WindowDisplay extends JPanel implements Observer
     private JTextField taxiText = new JTextField(10);
 
 
-	//sets up general gui
+	//constructor sets up general gui
 	public WindowDisplay (Kiosk kiosk)
 	{
+        //FONT of Choice
         Font kioskFont = new Font("SansSerif", Font.BOLD, 14);
 
+        // set up the local vars
 		this.kioskdata = kiosk;
         kiosk.registerObserver(this);
-        this.add(kioskText);
-        this.add(destText);
-        this.add(passText);
-        this.add(taxiText);
 
-
+        //set up the Text Fields for the kiosk these will update when a worker picks up the data from the queues
         kioskText.setEditable(false);
         kioskText.setHorizontalAlignment(JTextField.CENTER);
         kioskText.setFont(kioskFont);
@@ -41,16 +40,17 @@ public class WindowDisplay extends JPanel implements Observer
         taxiText.setEditable(false);
         taxiText.setHorizontalAlignment(JTextField.CENTER);
         taxiText.setFont(kioskFont);
+
+        this.add(kioskText);
+        this.add(destText);
+        this.add(passText);
+        this.add(taxiText);
+
 		update();
 
 	}
-    public void setKioskdata(Passenger passenger, Taxi taxi){
-        kioskdata.setDestination(passenger.getDestination());
-        kioskdata.setNo_of_pas(passenger.getNo_of_pas());
-        kioskdata.setTaxi(taxi.getTaxi());
 
-    }
-	//update method gets and stores time in 24 hour hh:mm format
+	//update method stores the text data to the textfields
 	public void update()
 	{
 

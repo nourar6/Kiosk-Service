@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
+//SAME AS PassengerDisplay
 //using observer pattern
 public class TaxiDisplay extends JPanel implements Observer {
 

@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 
+//Same AS PassengerIterator
 // TaxiIterator Class which is used for sharing between the Threads(workers)
 class TaxiIterator {
     // instantiate the variables that will be shared
