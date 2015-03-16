@@ -62,16 +62,12 @@ public class KioskService
         }
 
         int taxi_size = taxi_queue.size();
-        PassTaxiGUI  taxiDisplay = new PassTaxiGUI("TAXIS ",pass_size);
+        PassTaxiGUI  taxiDisplay = new PassTaxiGUI("TAXIS ",taxi_size);
         for(int i=0; i < taxi_size; i++){
             Taxi taxis = taxi_queue.get(i);
             TaxiDisplay td = new TaxiDisplay(taxis);
             taxiDisplay.addComponent(td, i);
         }
-
-        //create counter
-//        Counter counter = new Counter (kiosk);
-
 
         try {
             Thread.sleep(2000);
@@ -82,12 +78,22 @@ public class KioskService
         TaxiIterator ti = new TaxiIterator(taxi_queue, taxiDisplay); //passenger_queue
 
         Thread thread2 = new Thread(new KioskWorker(1, pi, ti)); //kioskWorker
+        try {
+            Thread.sleep(1000);
+        }
+        catch (Exception e) {}
         thread2.start();
+
         try {
             Thread.sleep(200);
         }
         catch (Exception e) {}
+
         Thread thread3 = new Thread(new KioskWorker(2, pi, ti)); //kioskWorker
+        try {
+            Thread.sleep(1000);
+        }
+        catch (Exception e) {}
         thread3.start();
 
         //Run the program..

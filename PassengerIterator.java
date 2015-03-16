@@ -22,6 +22,11 @@ class PassengerIterator {
         return passenger_size;
     }
 
+    public synchronized  int decrement(){
+        passenger_size--;
+        return passenger_size;
+    }
+
     public synchronized Iterator<Passenger> fetch() {
         return pi;
     }

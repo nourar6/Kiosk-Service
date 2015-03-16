@@ -1,40 +1,30 @@
 //Model for MVC
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
 public class Kiosk implements Subject
 {
     //Kiosk Class
     public int number;
-    private boolean active;
     private String destination;
     private int no_of_pas;
     private String taxi;
 
-	//initially, set time to midnight
-	public Kiosk(int num)
-	{   number = num;
-        active = false;
-	}
+	// give the kiosk a number like Window 1
+	public Kiosk(int num) { number = num; }
 	
 	//////////////////////////////////////////////////////////////
 	//VARIOUS GET METHODS
-	//returns hours component of the time
-	public boolean getStatus()
-	{
-		return active;
-	}
 
     public String getDestination() { return destination; }
 
     public int getNo_of_pas() { return  no_of_pas; }
 
     public String getTaxi() { return taxi; }
-	//initialises Active with the state
-	public void setState(boolean state)
-	{
-		active = state;
-		notifyObservers();
-	}
+
+    //////////////////////////////////////////////////////////////
+    //VARIOUS SET METHODS
+
     public void setDestination(String dest)
     {
         destination = dest;
