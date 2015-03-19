@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 
 // MAIN Class for Setting up everything Execute this file.
 public class KioskService
@@ -18,52 +20,35 @@ public class KioskService
 
         // Passenger ArrayList similar to part 1 of coursework
         ArrayList<Passenger> passenger_queue = new ArrayList<Passenger>();
+        ArrayList<String> places = new ArrayList<String>(Arrays.asList("Edinburgh", "Manchester", "Newcastle", "London", "Birmingham", "Glasgow", "Dundee", "Ipswich"));
 
-        // just add static items to list
-        Passenger passenger = new Passenger();
-        passenger.setDestination("Edinburgh");
-        passenger.setNo_of_pas(3);
-        passenger_queue.add(passenger);
-
-        passenger = new Passenger();
-        passenger.setDestination("Manchester");
-        passenger.setNo_of_pas(1);
-        passenger_queue.add(passenger);
-
-        passenger = new Passenger();
-        passenger.setDestination("Newcastle");
-        passenger.setNo_of_pas(3);
-        passenger_queue.add(passenger);
-
-        passenger = new Passenger();
-        passenger.setDestination("London");
-        passenger.setNo_of_pas(2);
-        passenger_queue.add(passenger);
-
-        passenger = new Passenger();
-        passenger.setDestination("Birmingham");
-        passenger.setNo_of_pas(2);
-        passenger_queue.add(passenger);
+        Random random = new Random();
+        int randomInt = random.nextInt((20-5) + 1) + 5;
+        for (int i = 1; i <= randomInt; ++i){
+            int placeInt = random.nextInt(7);
+            int passInt = random.nextInt((5-1) + 1) + 1;
+            // just add static items to list
+            Passenger passenger = new Passenger();
+            passenger.setDestination(places.get(placeInt));
+            passenger.setNo_of_pas(passInt);
+            passenger_queue.add(passenger);
+        }
 
         // Taxi ArrayList similar to part 1 of coursework
         ArrayList<Taxi> taxi_queue = new ArrayList<Taxi>();
 
-        // again adding static data to list
-        Taxi taxi = new Taxi();
-        taxi.setTaxi("L5H 140");
-        taxi_queue.add(taxi);
 
-        taxi = new Taxi();
-        taxi.setTaxi("Z6N 557");
-        taxi_queue.add(taxi);
+         random = new Random();
+         randomInt = random.nextInt((20-5) + 1) + 5;
+        for (int i = 1; i <= randomInt; ++i){
 
-        taxi = new Taxi();
-        taxi.setTaxi("R6D 703");
-        taxi_queue.add(taxi);
-
-        taxi = new Taxi();
-        taxi.setTaxi("U6F 901");
-        taxi_queue.add(taxi);
+            int taxiInt = random.nextInt((999-100) + 100) + 100;
+            // just add static items to list
+            Taxi taxi = new Taxi();
+            taxi.setTaxi("H5W "+taxiInt);
+            taxi_queue.add(taxi);
+        }
+        
 
         // caclulate the size of the queue to have it as a header on the queue to see the number of passengers remaining
         int pass_size = passenger_queue.size();
