@@ -6,6 +6,8 @@ import java.util.Iterator;
 // Main Controller for Updating the Views
 public class KioskWorker implements Runnable  {
 
+    private volatile boolean status;
+
     // instantiate variables
     private int number;
     PassengerIterator pi;
@@ -41,20 +43,29 @@ public class KioskWorker implements Runnable  {
         display.addCenter(wd);
 
     }
+
     // execute thread
-    public void run() {
+    public void run(){
 
         // get Loggers instance
         Logger logger = Logger.getInstance();
         // begin loop of passenger queue
         while(passenger_iterator.hasNext()) {
+            this.status = kiosk.getStatus();
+            while(!this.status){
+                this.status = kiosk.getStatus();
+                try { System.out.println("PAUSED "+ number + " " + this.status);
+                    Thread.sleep(500);
+                      }
+                catch (Exception e) {}
+            }
 
             // check taxi is available
             if (taxi_iterator.hasNext()) {
                 // get the taxi
                 Taxi taxi = taxi_iterator.next();
                 // log to the logger
-                logger.log(number + ": " + taxi.getTaxi());
+                logger.log("Window" + number + ": " + taxi.getTaxi());
                 // set the taxi to the window that the passengers will be using
                 kiosk.setTaxi(taxi.getTaxi());
                 // remove the taxi from the queue
@@ -74,7 +85,7 @@ public class KioskWorker implements Runnable  {
             // get the passenger in queue
             Passenger passenger = passenger_iterator.next();
             // log the passenger info to the logger
-            logger.log(number + ": " + passenger.getDestination());
+            logger.log("Window" + number + ": " + passenger.getDestination());
             // remove the passenger from the queue
             passenger_iterator.remove();
             passenger_queue--;
@@ -118,6 +129,11 @@ public class KioskWorker implements Runnable  {
         pass_display.revalidate();
 
         logger.close();
+
+    }
+
+    public void restart(){
+        run();
     }
 
     // function to update the header on the display to show the remaining number in the queue

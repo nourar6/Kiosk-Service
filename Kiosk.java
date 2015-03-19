@@ -9,9 +9,10 @@ public class Kiosk implements Subject
     private String destination;
     private int no_of_pas;
     private String taxi;
+    private volatile boolean status=false;
 
 	// give the kiosk a number like Window 1
-	public Kiosk(int num) { number = num; }
+	public Kiosk(int num) { number = num;}
 	
 	//////////////////////////////////////////////////////////////
 	//VARIOUS GET METHODS
@@ -21,6 +22,8 @@ public class Kiosk implements Subject
     public int getNo_of_pas() { return  no_of_pas; }
 
     public String getTaxi() { return taxi; }
+
+    public boolean getStatus() { return status; }
 
     //////////////////////////////////////////////////////////////
     //VARIOUS SET METHODS
@@ -41,6 +44,11 @@ public class Kiosk implements Subject
     {
         taxi = taxi_reg;
         notifyObservers();
+    }
+
+    public void switchStatus() {
+        status = !status;
+        System.out.println(status);
     }
 
 	////////////////////////////////////////////////////////

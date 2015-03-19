@@ -17,7 +17,7 @@ public class Logger {
 
     // Log method to write to the log file
 	public void log(String message){
-        writer.printf("Window" + message + " \n");
+        writer.printf(message + " \n");
     }
 
     //  method to get the current instance of the logger

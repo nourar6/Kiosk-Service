@@ -86,7 +86,6 @@ public class KioskService
         PassengerIterator pi = new PassengerIterator(passenger_queue, passDisplay); //passenger_queue
         TaxiIterator ti = new TaxiIterator(taxi_queue, taxiDisplay); //passenger_queue
 
-
         //create thread1 which will be our first window
         Thread thread1 = new Thread(new KioskWorker(1, pi, ti)); //kioskWorker
         try { Thread.sleep(1000); }
@@ -100,7 +99,7 @@ public class KioskService
         Thread thread2 = new Thread(new KioskWorker(2, pi, ti)); //kioskWorker
         try { Thread.sleep(1000); }
         catch (Exception e) {}
-        thread2.start(); // start worker 2 after a delay
+      //  thread2.start(); // start worker 2 after a delay
 
     }
     

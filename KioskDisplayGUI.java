@@ -35,6 +35,16 @@ class KioskDisplayGUI extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
+        // get Loggers instance
+        Logger logger = Logger.getInstance();
         System.out.println(kiosk.number);
+        kiosk.switchStatus();
+        if (kiosk.getStatus()){
+            logger.log("Starting worker " + kiosk.number);
+
+        }
+        else{
+            logger.log("Pausing worker" + kiosk.number);
+        }
     }
 }
