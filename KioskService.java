@@ -6,6 +6,15 @@ public class KioskService
     // main function
     public static void main(String[] args)
     {
+        int number = 0;
+        NumberOfKioskGUI nok = new NumberOfKioskGUI();
+        nok.setVisible(true);
+        while(number == 0){
+            number = nok.getNumber();
+            try { System.out.println(number);Thread.sleep(500); }
+            catch (Exception e) {}
+        }
+        System.out.println(number);
 
         // Passenger ArrayList similar to part 1 of coursework
         ArrayList<Passenger> passenger_queue = new ArrayList<Passenger>();
@@ -55,6 +64,7 @@ public class KioskService
         taxi = new Taxi();
         taxi.setTaxi("U6F 901");
         taxi_queue.add(taxi);
+
         // caclulate the size of the queue to have it as a header on the queue to see the number of passengers remaining
         int pass_size = passenger_queue.size();
         // Set up the GUI Window with the information
@@ -78,28 +88,22 @@ public class KioskService
             taxiDisplay.addComponent(td, i);
         }
 
-        //wait 2 seconds to allow user to move the loaded windows that are on top of one another.
-        try { Thread.sleep(2000); }
-        catch (Exception e) {}
-
         // Generate a thread safe sharable iterator used by the threads to process the queue
         PassengerIterator pi = new PassengerIterator(passenger_queue, passDisplay); //passenger_queue
         TaxiIterator ti = new TaxiIterator(taxi_queue, taxiDisplay); //passenger_queue
+        for(int i=1; i< number+1; i++){
+            //wait 2 seconds to allow user to move the loaded windows that are on top of one another.
+            try { Thread.sleep(2000); }
+            catch (Exception e) {}
 
-        //create thread1 which will be our first window
-        Thread thread1 = new Thread(new KioskWorker(1, pi, ti)); //kioskWorker
-        try { Thread.sleep(1000); }
-        catch (Exception e) {}
-        thread1.start(); // start the thread after a delay
+            //create thread1 which will be our first window
+            Thread thread = new Thread(new KioskWorker(i, pi, ti)); //kioskWorker
+//            try { Thread.sleep(1000); }
+//            catch (Exception e) {}
+            thread.start(); // start the thread after a delay
 
-        //slight delay as if the threads started to close to each other it caused an Exception
-        try { Thread.sleep(200); }
-        catch (Exception e) {}
+        }
 
-        Thread thread2 = new Thread(new KioskWorker(2, pi, ti)); //kioskWorker
-        try { Thread.sleep(1000); }
-        catch (Exception e) {}
-      //  thread2.start(); // start worker 2 after a delay
 
     }
     
