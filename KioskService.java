@@ -77,6 +77,7 @@ public class KioskService
             TaxiDisplay td = new TaxiDisplay(taxis);
             taxiDisplay.addComponent(td, i);
         }
+
         //wait 2 seconds to allow user to move the loaded windows that are on top of one another.
         try { Thread.sleep(2000); }
         catch (Exception e) {}
@@ -84,6 +85,7 @@ public class KioskService
         // Generate a thread safe sharable iterator used by the threads to process the queue
         PassengerIterator pi = new PassengerIterator(passenger_queue, passDisplay); //passenger_queue
         TaxiIterator ti = new TaxiIterator(taxi_queue, taxiDisplay); //passenger_queue
+
 
         //create thread1 which will be our first window
         Thread thread1 = new Thread(new KioskWorker(1, pi, ti)); //kioskWorker

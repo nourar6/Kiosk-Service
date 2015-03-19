@@ -36,7 +36,7 @@ public class PassengerDisplay extends JPanel implements Observer {
         this.add(passText);
 
         //update the text for these text fields with the passenger data
-        //update();
+        update();
 
     }
 

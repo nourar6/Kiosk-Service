@@ -7,6 +7,7 @@ class PassengerIterator {
     //instantiate local vars
     private Iterator<Passenger> pi;
     private int passenger_size;
+    private int original_size;
     private PassTaxiGUI pd;
 
     //constructor
@@ -15,6 +16,7 @@ class PassengerIterator {
         pi = passengers.iterator();
         pd = passDisplay;
         passenger_size = passengers.size();
+        original_size = passengers.size();
 
     }
 
@@ -30,6 +32,11 @@ class PassengerIterator {
     public synchronized  int decrement(){
         passenger_size--;
         return passenger_size;
+    }
+    public synchronized void increment(ArrayList<Passenger> passengers) {
+        pi = passengers.iterator();
+        passenger_size = passengers.size();
+
     }
 
     public synchronized Iterator<Passenger> fetch() {

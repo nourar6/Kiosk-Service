@@ -34,9 +34,11 @@ public class KioskWorker implements Runnable  {
         this.taxi_display = ti.taxiDisplay();
         this.kiosk = new Kiosk(number);
 
-        WindowDisplay dd = new WindowDisplay(kiosk);
+        WindowDisplay wd = new WindowDisplay(kiosk);
+
         KioskDisplayGUI display = new KioskDisplayGUI();
-        display.addCenter(dd);
+        display.addHeader(kiosk);
+        display.addCenter(wd);
 
     }
     // execute thread
