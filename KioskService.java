@@ -48,7 +48,7 @@ public class KioskService
             taxi.setTaxi("H5W "+taxiInt);
             taxi_queue.add(taxi);
         }
-        
+
 
         // caclulate the size of the queue to have it as a header on the queue to see the number of passengers remaining
         int pass_size = passenger_queue.size();

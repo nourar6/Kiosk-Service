@@ -59,13 +59,15 @@ public class KioskWorker implements Runnable  {
                       }
                 catch (Exception e) {}
             }
-
+            logger.log("Window" + number + ": Getting Taxi");
             // check taxi is available
+            String taxi_reg;
             if (taxi_iterator.hasNext()) {
                 // get the taxi
                 Taxi taxi = taxi_iterator.next();
+                taxi_reg = taxi.getTaxi();
                 // log to the logger
-                logger.log("Window" + number + ": " + taxi.getTaxi());
+                logger.log("Window" + number + ": " + taxi_reg);
                 // set the taxi to the window that the passengers will be using
                 kiosk.setTaxi(taxi.getTaxi());
                 // remove the taxi from the queue
@@ -79,9 +81,11 @@ public class KioskWorker implements Runnable  {
                 taxi_display.setVisible(true);
             }
             else {
+                logger.log("Window" + number + ": no more Taxis Window closing.");
                 // if no taxis available stop the loop
                 break;
             }
+            logger.log("Window" + number + ": Getting Passenger");
             // get the passenger in queue
             Passenger passenger = passenger_iterator.next();
             // log the passenger info to the logger
@@ -112,6 +116,7 @@ public class KioskWorker implements Runnable  {
             catch (InterruptedException e) {
                 System.out.println(e.getMessage());
             }
+            logger.log("Window" + number + ": passenger going to " + passenger.getDestination() + " in taxi " + taxi_reg);
             //after wait has finished clear the kiosk for next passenger
             kiosk.setDestination("");
             kiosk.setNo_of_pas(0);
@@ -125,6 +130,7 @@ public class KioskWorker implements Runnable  {
             }
 
         }
+        logger.log("Window" + number + ": no more Passengers Window closing.");
         taxi_display.revalidate();
         pass_display.revalidate();
 
