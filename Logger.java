@@ -11,8 +11,8 @@ public class Logger {
     private PrintWriter writer;
 
     // constructor
-    public Logger () throws FileNotFoundException, UnsupportedEncodingException {
-        writer = new PrintWriter(System.getProperty("user.home").concat("\\Desktop\\kiosk-service\\out\\log_file.txt"), "UTF-8");
+    public Logger () throws FileNotFoundException, UnsupportedEncodingException, IOException {
+        writer = new PrintWriter(System.getProperty("user.dir").concat("\\log_file.txt"), "UTF-8");
     }
 
     // Log method to write to the log file
@@ -30,6 +30,7 @@ public class Logger {
             // as the logger creates a new  PrinterWriter we need to catch possible Exceptions
             catch (FileNotFoundException e){System.out.println(e.getMessage());}
             catch (UnsupportedEncodingException u){System.out.println(u.getMessage());}
+            catch (IOException i){System.out.println(i.getMessage());}
         }
         return instance;
     }
